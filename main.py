@@ -1,6 +1,7 @@
 from ethiopia.search_ethiopia import EthiopiaSearch
 from ethiopia.uniform import uniform_cost_search, customized_ucs
 from ethiopia.a_star import AStarSearch
+from ethiopia.mini_max import EthiopiaAdversarialSearch
 # Full state space graph for Ethiopia travel (figure 1)
 ETHIOPIA_GRAPH = {
 
