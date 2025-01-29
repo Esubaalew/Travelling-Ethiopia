@@ -1,5 +1,5 @@
 from ethiopia.search_ethiopia import EthiopiaSearch
-from ethiopia.uniform import uniform_cost_search
+from ethiopia.uniform import uniform_cost_search, customized_ucs
 # Full state space graph for Ethiopia travel (figure 1)
 ETHIOPIA_GRAPH = {
 
@@ -55,7 +55,7 @@ graph = {
     "Axum": {"Asmara": 5, "Shire": 2, "Adwa": 1},
     "Adigrat": {"Asmara": 6, "Adwa": 4, "Mekelle": 4},
     "Adwa": {"Axum": 1, "Adigrat": 4, "Mekelle": 7},
-    "Mekelle": {"Adigrat": 4, "Adwa": 7, "Alamata": 5, "Sekota":9},
+    "Mekelle": {"Adigrat": 4, "Adwa": 7, "Alamata": 5, "Sekota": 9},
     "Sekota": {"Mekelle": 9, "Alamata": 6, "Lalibela": 6},
     "Lalibela": {"Sekota": 6, "Woldia": 7, "Debre Tabor": 8},
     "Alamata": {"Mekelle": 5, "Sekota": 6, "Woldia": 3, "Samara": 11},
@@ -138,7 +138,6 @@ graph = {
 }
 
 
-
 def main():
     search_system = EthiopiaSearch(ETHIOPIA_GRAPH)
 
@@ -154,10 +153,17 @@ def main():
     print(f"\nDFS Path ({start_city} -> {target_city}):")
     print(" -> ".join(dfs_route) if dfs_route else "No path found")
 
-
     # Test for Task 2.2
     cost, path = uniform_cost_search(graph, "Addis Ababa", "Lalibela")
     print("Task 2.2 - Path to Lalibela:", " → ".join(path))
+    print("Total Cost:", cost)
+
+    goals = ["Axum", "Gondar", "Lalibela", "Babille",
+             "Jimma", "Bale", "Sof Oumer", "Arba Minch"]
+
+    # Test for Task 2.3
+    cost, path = customized_ucs(graph, "Addis Ababa", goals)
+    print("\nTask 2.3 - Path visiting all goals:", " → ".join(path))
     print("Total Cost:", cost)
 
 
